@@ -1,0 +1,181 @@
+﻿@model OyunArkadasım.Models.Entity.TBLMESAJLAR
+@{
+    ViewBag.Title = "MesajGonder";
+    Layout = "~/Views/Shared/LayoutUye.cshtml";
+}
+<style>
+    .solmenu {
+        z-index: 1;
+        width: 95%;
+        box-shadow: 0px 0px 35px #46000052;
+        background: url(../images/mini_nav_bg.jpg) #160a0b bottom center;
+        border: 1px solid #261c1a;
+        overflow: hidden;
+        position: absolute;
+        top: 58px;
+        left: calc( ( 100% - 185px + 20px ) / 2 );
+        overflow: hidden;
+        margin-top: -55px;
+        border-radius: 4px;
+    }
+    .solmenu > a {
+        width: 100%;
+        padding: 18px 8px;
+        color: #ffb676;
+        text-decoration: none;
+        display: block;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 16px;
+        text-transform: uppercase;
+        text-shadow: 0px 2px 2px #000000;
+        transition: all .2s ease-in-out;
+        border-bottom: 1px solid #1e1310;
+        text-align: center;
+    }
+
+    #uyeadi {
+        width: 100%;
+        color: #d83e3e;
+        text-decoration: none;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 24px;
+        padding: 18px 8px;
+        text-transform: uppercase;
+        text-shadow: 0px 0px 1px #d83e3e;
+        border-bottom: 1px solid #1e1310;
+        text-align: center;
+        margin: 0px;
+    }
+
+    .solmenu > a:hover {
+        filter: brightness(150%);
+    }
+    .form {
+        height: auto;
+        width: 82%;
+        background: rgba(37, 19, 12, 0.24);
+        box-shadow: 0px 0px 35px #46000052;
+        border: 1px solid #272523;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        color: #dbc9b8;
+        text-align: left;
+        padding: 20px 100px 30px 100px;
+        margin-left: 80px;
+    }
+
+        .form h2 {
+            color: #ffb676;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(255,193,113,1);
+        }
+
+        .form button {
+            z-index: 200;
+            width: auto;
+            margin: auto;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 4px;
+            background: url(../../img/button_orange_center.png) top center;
+            background-size: auto 100%;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+        }
+
+            .form button span {
+                position: relative;
+                z-index: 2;
+                color: #250e01;
+                font-family: Constantia;
+                font-size: 18px;
+                font-weight: bolder;
+                text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+            }
+
+            .form button:hover {
+                filter: brightness(130%);
+            }
+
+
+    .text-box {
+        height: 40px;
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #342d29;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        /*color: #dbc9b8;*/
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .mesaj {
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #342d29;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        /*color: #dbc9b8;*/
+        text-align: center;
+        margin-bottom: 20px;
+        height: 100px;
+        width: 350px;
+    }
+
+    label {
+        color: #f2ceaa;
+    }
+</style>
+<div class="container-fluid" style="margin-top:30px">
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="solmenu">
+                <p id="uyeadi">@ViewData["kullaniciadi"]</p>
+                <a href="/Uye/UyeProfilGoster/@ViewData["uyeid"]">ÜYE PROFİLİ</a>
+                <a href="/Uye/UyeLolProfiliGoster/@ViewData["uyeid"]">LOL PROFİLİ</a>
+                <a href="/Uye/UyeCsProfiliGoster/@ViewData["uyeid"]">CS:GO PROFİLİ</a>
+                <a href="/Uye/UyeValorantProfiliGoster/@ViewData["uyeid"]">VALORANT PROFİLİ</a>
+                <a href="/Uye/MesajGonder/@ViewData["uyeid"]">MESAJ GÖNDER</a>
+
+            </div>
+        </div>
+        <div class="col-sm-9 col-md-9 col-lg-9" style="padding-left:20px">
+            <div class="form">
+                <form action="#" class="form-group" method="post">
+                    <div style="margin-bottom:45px"><h2>MESAJ GÖNDER</h2></div>
+                    <div style="margin-top:15px;margin-left:70px;">
+                        <label>Alıcı :&nbsp;&nbsp;</label>
+                        @Html.TextBoxFor(x => x.alici, new { @class = "text-box" , Value= ViewData["kullaniciadi"] })
+                        
+                    </div>
+                    <div style="margin-top:15px;margin-left:55px;">
+                        <label>Konu :&nbsp;&nbsp;&nbsp;</label>
+                        @Html.TextBoxFor(x => x.konu, new { @class = "text-box" })
+
+                    </div>
+                    <div style="margin-top:15px;margin-left:50px;">
+                        <label style="margin:10px 0px 20px 110px;">Mesaj İçeriği :</label>
+                        @Html.TextAreaFor(x => x.icerik, new { @class = "mesaj" })
+
+                    </div>
+                    <div style="margin-top:15px">
+                        <button class="btn btn-info"><span>Mesaj Gönder</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

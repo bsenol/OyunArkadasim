@@ -1,0 +1,242 @@
+﻿@model OyunArkadasım.Models.Entity.TBLUYEOYUNBILGI
+@{
+    ViewBag.Title = "UyeCsProfiliGoster";
+    Layout = "~/Views/Shared/LayoutUye.cshtml";
+}
+
+<style>
+    table {
+        border-color: #ffb676;
+    }
+
+    tr {
+        border: hidden;
+    }
+
+        tr td {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #ffb676;
+            border-radius: 4px;
+            font-family: Constantia;
+            font-size: 20px;
+            color: #dbc9b8;
+            text-align: center;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+
+    h2 {
+        font-family: Constantia, sans-serif;
+        font-weight: 600;
+        font-size: 30px;
+        color: #ffb676;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 3px rgba(255,193,113,1);
+    }
+
+    .button {
+        z-index: 200;
+        width: 40%;
+        margin: auto;
+        height: 40px;
+        overflow: hidden;
+        border-radius: 4px;
+        background: url(../../img/button_orange_center.png) top center;
+        background-size: auto 100%;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+        margin-top: 10px;
+    }
+
+    span {
+        position: relative;
+        z-index: 2;
+        color: #250e01;
+        font-family: Constantia;
+        font-size: 18px;
+        font-weight: bolder;
+        text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+    }
+
+    .button:hover {
+        filter: brightness(130%);
+    }
+
+    label {
+        color: #f2ceaa;
+    }
+
+    .solmenu {
+        z-index: 1;
+        width: 95%;
+        box-shadow: 0px 0px 35px #46000052;
+        background: url(../images/mini_nav_bg.jpg) #160a0b bottom center;
+        border: 1px solid #261c1a;
+        overflow: hidden;
+        position: absolute;
+        top: 58px;
+        left: calc( ( 100% - 185px + 20px ) / 2 );
+        overflow: hidden;
+        margin-top: -55px;
+        border-radius: 4px;
+    }
+
+    #uyeadi {
+        width: 100%;
+        color: #d83e3e;
+        text-decoration: none;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 24px;
+        padding: 18px 8px;
+        text-transform: uppercase;
+        text-shadow: 0px 0px 1px #d83e3e;
+        border-bottom: 1px solid #1e1310;
+        text-align: center;
+        margin: 0px;
+    }
+
+    .solmenu > a {
+        width: 100%;
+        padding: 18px 8px;
+        color: #ffb676;
+        text-decoration: none;
+        display: block;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 16px;
+        text-transform: uppercase;
+        text-shadow: 0px 2px 2px #000000;
+        transition: all .2s ease-in-out;
+        border-bottom: 1px solid #1e1310;
+        text-align: center;
+    }
+
+        .solmenu > a:hover {
+            filter: brightness(150%);
+        }
+
+        .solmenu > a:focus {
+            filter: brightness(150%);
+        }
+
+        .solmenu > a:active {
+            filter: brightness(150%);
+        }
+
+    .puanlama_menu {
+        z-index: 9999;
+        width: 170px;
+        background: url(../images/bg/mini_nav_bg.jpg) #160a0b bottom center;
+        border: 1px solid #261c1a;
+        border-radius: 4px;
+        overflow: hidden;
+        position: absolute;
+        top: 58px;
+        left: calc( ( 100% - 185px + 20px ) / 2 );
+        overflow: hidden;
+        display: none;
+    }
+
+    #puanlama_Link {
+        margin-top: 15px;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 16px;
+        color: #dbc9b8;
+        text-shadow: 0px 2px 2px #000000;
+        background: url(../../img/button-bg.png) top center;
+        background-size: auto 100%;
+        padding: 8px 15px;
+    }
+
+        #puanlama_Link:hover, #puanlama_Link:focus {
+            filter: brightness(150%);
+        }
+
+    #cerceve {
+        height: auto;
+        width: 656px;
+        border: 1px solid #272523;
+        border-radius: 4px;
+        margin-top: 3px;
+        margin-left: 80px;
+        padding: 20px 0px 20px 0px;
+        background: rgba(37, 19, 12, 0.24);
+        box-shadow: 0px 0px 35px #46000052;
+    }
+</style>
+
+<div class="container-fluid" style="margin-top:30px">
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="solmenu">
+                <p id="uyeadi">@ViewData["kullaniciadi"]</p>
+                <a href="/Uye/UyeProfilGoster/@ViewData["uyeid"]">ÜYE PROFİLİ</a>
+                <a href="/Uye/UyeLolProfiliGoster/@ViewData["uyeid"]">LOL PROFİLİ</a>
+                <a href="/Uye/UyeCsProfiliGoster/@ViewData["uyeid"]">CS:GO PROFİLİ</a>
+                <a href="/Uye/UyeValorantProfiliGoster/@ViewData["uyeid"]">VALORANT PROFİLİ</a>
+                <a href="/Uye/MesajGonder/@ViewData["uyeid"]">MESAJ GÖNDER</a>
+
+            </div>
+        </div>
+        <div class="col-sm-9 col-md-9 col-lg-9" style="padding-left:20px">
+            <div id="cerceve">
+                <table class="table" style="width:100%;margin:auto;">
+                    <tr>
+                        <td style="box-shadow:none;">
+                            <img src="~/img/cs-logo1.png" alt="Alternate Text" class="logo" style="width:47%;height:auto;margin-top:-30px;margin-bottom:-20px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="box-shadow:none;">
+                            <h2>PROFİLİ</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ffb676;padding-top:20px">
+                            <label>Nickname :&nbsp;&nbsp;&nbsp;</label>
+                            @Html.DisplayFor(x => x.NICKNAME)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Derece :&nbsp;&nbsp;&nbsp; </label>
+                            @Html.DisplayFor(x => x.TBLDERECE.DereceAdı)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>LoL Profili Puanı :&nbsp;&nbsp;&nbsp; </label>
+                            @Html.DisplayFor(x => x.PUAN)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="height:200px;">
+                            <div class="dropdown">
+                                <a href="#" class="btn dropdown-toggle" role="button" id="puanlama_Link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    PROFİLİ PUANLA<i class="fa fa-angle-down" style="margin-left:8px"></i>
+                                </a>
+                                <div class="puanlama_menu dropdown-menu" id="dropdown-bg" aria-labelledby="dropdownLink">
+                                    <a href="/Uye/CsPuanlama/@ViewData["uyeid"]" id="puan1" class="btn puanlama" style="margin-left:25px;width:50px;height:50px;border:2px solid #fff;border-radius:25px;background: url(../../img/puan3.png) top center; background-size: auto 100%;"></a>
+                                    <a href="/Uye/CsPuanlama2/@ViewData["uyeid"]" id="puan2" class="btn puanlama" style="width:54px;height:54px;margin-left:10px;background: url(../../img/puan2.png) top center; background-size: auto 100%;"></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

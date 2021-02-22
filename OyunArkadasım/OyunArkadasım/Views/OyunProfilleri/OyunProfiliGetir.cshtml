@@ -1,0 +1,106 @@
+﻿@model OyunArkadasım.Models.Entity.TBLUYEOYUNBILGI
+@{
+    ViewBag.Title = "OyunProfiliGetir";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<style>
+    .form {
+        width: 51%;
+        height: auto;
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #ffb676;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        color: #dbc9b8;
+        text-align: left;
+        padding: 100px;
+        padding-top: 20px;
+        margin: 30px;
+        margin-left: 230px;
+    }
+
+        .form h2 {
+            color: #ffb676;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(255,193,113,1);
+        }
+
+        .form button {
+            z-index: 200;
+            width: auto;
+            margin: auto;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 4px;
+            background: url(../../img/button_orange_center.png) top center;
+            background-size: auto 100%;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+        }
+
+            .form button span {
+                position: relative;
+                z-index: 2;
+                color: #250e01;
+                font-family: Constantia;
+                font-size: 18px;
+                font-weight: bolder;
+                text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+            }
+
+            .form button:hover {
+                filter: brightness(130%);
+            }
+
+
+    .text-box {
+        height: 40px;
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #342d29;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        /*color: #dbc9b8;*/
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        color: #f2ceaa;
+    }
+</style>
+<div class="form">
+    <h2>Oyun Profili Güncelle</h2>
+    @using (Html.BeginForm("OyunProfiliGuncelle", "OyunProfilleri", FormMethod.Post))
+    {
+        <div style="margin-top:15px"></div>
+        <form class="form-group">
+            @Html.HiddenFor(p => p.ID, new { @class = "form-control" })
+            <br />
+            @Html.HiddenFor(p => p.TBLUYE.Id, new { @class = "form-control" })
+            @Html.HiddenFor(p => p.TBLOYUN.ID, new { @class = "form-control" })
+            <label>Nickname :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            @Html.TextBoxFor(p => p.NICKNAME, new { @class = "text-box" })
+            <br />
+            <label>Derecesi :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            @Html.DropDownListFor((p => p.TBLDERECE.DereceID), (List<SelectListItem>)ViewBag.dgr1, new { @class = "text-box text-warning" })
+            <br />
+            <label>Main Rolü :&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            @Html.DropDownListFor((p => p.TBLROL.Id), (List<SelectListItem>)ViewBag.dgr2, new { @class = "text-box text-warning" })
+            <br />
+            <label>Profil Puanı :&nbsp;</label>
+            @Html.TextBoxFor(p => p.PUAN, new { @class = "text-box" })
+            <br />
+            <div style="margin-top:15px">
+                <button class="btn btn-warning"><span>Oyuncu Profilini Güncelle</span></button>
+            </div>
+        </form>
+    }
+</div>

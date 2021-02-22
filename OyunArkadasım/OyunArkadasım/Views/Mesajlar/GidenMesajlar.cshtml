@@ -1,0 +1,85 @@
+﻿@using OyunArkadasım.Models.Entity;
+@model List<TBLMESAJLAR>
+@{
+    ViewBag.Title = "GidenMesajlar";
+    Layout = "~/Views/Shared/LayoutProfilim.cshtml";
+}
+
+<style>
+    h2 {
+        color: #ffb676;
+        text-align: center;
+        text-shadow: 1px 1px 3px rgba(255,193,113,1);
+        margin-bottom: 20px;
+        background: rgba(192,164,158,0.04);
+        width: 82%;
+        height: 60px;
+        text-align: center;
+        padding-top: 10px;
+        border: 1px solid rgba(255,255,255,0.04);
+        border-radius: 4px;
+        margin: 3px auto 20px 79px;
+    }
+
+    tr td {
+        font-family: Constantia;
+        font-size: 18px;
+        color: #ffb676;
+        text-align: center;
+        border: 2px solid #420000;
+    }
+
+    tr {
+        background: rgba(37, 19, 12, 0.24);
+        font-family: Constantia;
+        font-size: 20px;
+        color: #dbc9b8;
+        text-align: center;
+        border: 2px solid #420000;
+    }
+
+        tr th {
+            border: 2px solid #420000;
+            font-family: Constantia;
+            font-size: 20px;
+            color: #f30000;
+            text-align: center;
+        }
+
+    td a {
+        background: url(../../img/sil-icon.png) top center;
+        background-size: auto 100%;
+        padding: 1px 10px 3px 16px;
+        border: none;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+    }
+
+        td a:hover {
+            filter: brightness(130%);
+            text-decoration: none;
+        }
+</style>
+<h2>GÖNDERİLEN MESAJLAR</h2>
+
+<table class="table" style="width:82%;margin-left:80px;">
+    <tr>
+        <th>ALICI</th>
+        <th>KONU</th>
+        <th>MESAJ</th>
+        <th>ZAMAN</th>
+        <th>SİL</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.alici</td>
+            <td>@x.konu</td>
+            <td>@x.icerik</td>
+            <td>@x.tarih</td>
+            <td><a href="/Mesajlar/MesajSil/@x.ID"></a></td>
+        </tr>
+    }
+
+</table>
+

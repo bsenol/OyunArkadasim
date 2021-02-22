@@ -1,0 +1,98 @@
+﻿@using OyunArkadasım.Models.Entity
+@model List<TBLUYEOYUNBILGI>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<style>
+    h2 {
+        color: #ffb676;
+        text-align: center;
+        text-shadow: 1px 1px 3px rgba(255,193,113,1);
+        margin-bottom: 20px;
+    }
+
+    tr td {
+        font-family: Constantia;
+        font-size: 18px;
+        color: #dbc9b8;
+        text-align: center;
+        border: 2px solid #420000;
+    }
+
+    tr {
+        background: rgba(37, 19, 12, 0.24);
+        font-family: Constantia;
+        font-size: 20px;
+        color: #dbc9b8;
+        text-align: center;
+        border: 2px solid #420000;
+    }
+
+        tr th {
+            border: 2px solid #420000;
+            font-family: Constantia;
+            font-size: 20px;
+            color: #dbc9b8;
+            text-align: center;
+        }
+
+    td a {
+        height: 35px;
+        overflow: hidden;
+        border-radius: 4px;
+        background: url(../../img/button-bg.png) top center;
+        background-size: auto 100%;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+    }
+
+    td span {
+        position: relative;
+        z-index: 2;
+        color: #dbc9b8;
+        font-family: Constantia;
+        font-weight: bolder;
+        text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+    }
+
+    td a:hover {
+        filter: brightness(130%);
+        text-decoration: none;
+    }
+</style>
+<h2>OYUNCU PROFİLLERİ</h2>
+<table class="table" style="border: 1px solid #ffb676;">
+    <tr>
+        <th>ID</th>
+        <th>Uye ID</th>
+        <th>Nickname</th>
+        <th>Derecesi</th>
+        <th>Main Rol</th>
+        <th>Oyun Adı</th>
+        <th>Profil Puanı</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.ID</td>
+            <td>@p.UYEID</td>
+            <td>@p.NICKNAME</td>
+            <td>@p.TBLDERECE.DereceAdı</td>
+            <td>@p.TBLROL.RolAdı</td>
+            <td>@p.TBLOYUN.OYUNADI</td>
+            <td>@p.PUAN</td>
+            <td><a href="/OyunProfilleri/OyunProfiliSil/@p.ID"><span>Sil</span></a></td>
+            <td><a href="/OyunProfilleri/OyunProfiliGetir/@p.ID"><span>Güncelle</span></a></td>
+        </tr>
+    }
+</table>
+<a href="/OyunProfilleri/OyunProfiliEkle" class="btn btn-danger">Profili Ekle</a>

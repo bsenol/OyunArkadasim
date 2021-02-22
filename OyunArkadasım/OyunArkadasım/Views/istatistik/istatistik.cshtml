@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "istatistik";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <style>
+        .ca-menu li a {
+            background-color: #9a836d;
+        }
+
+        ul li {
+            margin-bottom:20px;
+        }
+
+    </style>
+    <!-- custom-theme -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Esteem Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //custom-theme -->
+    <link href="~/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/component.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/export.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/css/style_grid.css" rel="stylesheet" type="text/css" media="all" />
+
+    <!-- font-awesome-icons -->
+    <link href="~/web3/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome-icons -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+</head>
+<body>
+    <!-- banner -->
+    <div class="clearfix"></div>
+
+    <ul class="ca-menu" style="width:98%;margin-left:40px;">
+        <li>
+            <a href="#">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main">@ViewBag.dgr1</h4>
+                    <h3 class="ca-sub">Üye Sayımız</h3>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main one">@ViewBag.dgr2</h4>
+                    <h3 class="ca-sub one">Oyun Profili Sayımız</h3>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main two">@ViewBag.dgr3</h4>
+                    <h3 class="ca-sub two">Mesaj Sayısı</h3>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-gamepad" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main four">@ViewBag.dgr4</h4>
+                    <h3 class="ca-sub four">En Başarılı Lol Profili</h3>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-gamepad" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main three ">@ViewBag.dgr5</h4>
+                    <h3 class="ca-sub three ">En Başarılı CS:GO Profili</h3>
+                </div>
+            </a>
+        </li>
+        <li style="margin-left:20px">
+            <a href="#">
+                <i class="fa fa-gamepad" aria-hidden="true"></i>
+                <div class="ca-content">
+                    <h4 class="ca-main ">@ViewBag.dgr6</h4>
+                    <h3 class="ca-sub ">En Başarılı Valorant Profili</h3>
+                </div>
+            </a>
+        </li>
+
+
+    </ul>
+</body>
+</html>
+

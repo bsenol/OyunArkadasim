@@ -1,0 +1,151 @@
+﻿@using GridMvc.Html
+@model IEnumerable<OyunArkadasım.Models.Entity.TBLUYE>
+@{
+    ViewBag.Title = "TumUyeleriGoruntule";
+    Layout = "~/Views/Shared/LayoutUye.cshtml";
+}
+
+<style>
+    h2 {
+        color: #ffb676;
+        text-align: center;
+        text-shadow: 1px 1px 3px rgba(255,193,113,1);
+        margin-bottom: 20px;
+        background: rgba(192,164,158,0.04);
+        width: 97%;
+        height: 60px;
+        text-align: center;
+        padding-top: 10px;
+        border: 1px solid rgba(255,255,255,0.04);
+        border-radius: 4px;
+        margin: 20px auto;
+        font-family: Constantia;
+    }
+
+    #liste {
+        width: 97%;
+        margin: auto;
+        margin-top: 30px;
+    }
+
+    div col {
+        background-color: none;
+    }
+
+    tbody .grid-cell {
+        background-color: #0e0101;
+        color: #dbc9b8;
+        font-family: Constantia;
+        font-size: 18px;
+    }
+
+    .table > tbody > tr > td {
+        border: 2px solid #420000;
+        border-left: none;
+        border-right: none;
+        text-align: center;
+    }
+
+    .table > thead > tr > th {
+        font-family: Constantia;
+        font-size: 19px;
+        color: #ffb676;
+        font-weight: bolder;
+        background-color: #090101;
+        text-align: center;
+        vertical-align: bottom;
+        border: none;
+    }
+
+    p, label {
+        color: #171515;
+    }
+
+
+    .table > thead > tr > th > div > a {
+        color: #ffb676;
+    }
+
+
+    .table {
+        border: 2px solid #420000;
+    }
+
+        .table > tr {
+            border: none;
+        }
+
+    td a {
+        height: 35px;
+        overflow: hidden;
+        border-radius: 4px;
+        background: url(../../img/login_icon.png) top center;
+        background-size: auto 100%;
+        position: relative;
+        padding: 5px 20px 5px 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+    }
+
+    td span {
+        position: relative;
+        z-index: 2;
+        color: #dbc9b8;
+        font-family: Constantia;
+        font-weight: bolder;
+        text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+    }
+
+    td a:hover {
+        filter: brightness(130%);
+        text-decoration: none;
+    }
+
+    .mesaj-icon {
+        background: url(../../img/mesaj2.png) top center no-repeat;
+        background-size: auto 100%;
+        padding: 0px 23px 1px 23px;
+    }
+</style>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="~/Content/Gridmvc.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/gridmvc.min.js"></script>
+    <script src="~/Scripts/gridmvc.lang.tr.js"></script>
+    <script src="~/Scripts/gridmvc.customwidgets.js"></script>
+</head>
+<body>
+    <h2>OYUNARKADASIM PROFİLLERİ</h2>
+    <div id="liste">
+        @Html.Grid(Model).Named("tumuyeler").Columns(col =>
+   {
+       col.Add(x => x.KULLANICIADI).Titled("KULLANICI ADI").Sortable(true).Filterable(true).SetWidth(270);
+       col.Add(x => x.YAS).Titled("YAŞ").Sortable(true).Filterable(true).SetWidth(140);
+       col.Add(x => x.AD).Titled("AD").Sortable(true);
+       col.Add(x => x.SOYAD).Titled("SOYAD").Sortable(true);
+       col.Add().Titled("MESAJ").Encoded(false).Sanitized(false).RenderValueAs(html =>
+       {
+           string htmlstr = "<a class='mesaj-icon' href='/Uye/MesajGonder/" + html.Id.ToString() + "'></a>";
+           return MvcHtmlString.Create(htmlstr);
+
+       }).SetWidth(200);
+       col.Add().Titled("PROFİL").Encoded(false).Sanitized(false).RenderValueAs(html =>
+       {
+           string htmlstr = "<a href='/Uye/UyeProfilGoster/" + html.Id.ToString() +"'></a>";
+           return MvcHtmlString.Create(htmlstr);
+
+       }).SetWidth(200);
+       
+   }).WithPaging(10).SetLanguage("tr")
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="436c3ef828a942b1a5afc730fcfa5aa8" Name="Diagram1">
+        <EntityTypeShape EntityType="DBTezModel.TBLOYUN" Width="1.5" PointX="5.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBTezModel.TBLUYE" Width="1.5" PointX="8.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBTezModel.TBLUYEOYUNBILGI" Width="1.5" PointX="10.875" PointY="2.625" IsExpanded="true" />
+        <AssociationConnector Association="DBTezModel.FK_TBLUYEOYUNBILGI_TBLOYUN" ManuallyRouted="false" />
+        <AssociationConnector Association="DBTezModel.FK_TBLUYEOYUNBILGI_TBLUYE1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBTezModel.TBLDERECE" Width="1.5" PointX="5.75" PointY="0.75" />
+        <AssociationConnector Association="DBTezModel.FK_TBLDERECE_TBLOYUN" />
+        <AssociationConnector Association="DBTezModel.FK_TBLUYEOYUNBILGI_TBLDERECE" />
+        <EntityTypeShape EntityType="DBTezModel.TBLROL" Width="1.5" PointX="8.375" PointY="4.625" />
+        <AssociationConnector Association="DBTezModel.FK_TBLROL_TBLOYUN" />
+        <AssociationConnector Association="DBTezModel.FK_TBLUYEOYUNBILGI_TBLROL" />
+        <EntityTypeShape EntityType="DBTezModel.TBLMESAJLAR" Width="1.5" PointX="3.25" PointY="3.875" />
+        <EntityTypeShape EntityType="DBTezModel.TBLADMIN" Width="1.5" PointX="3.25" PointY="1.5" />
+      </Diagram>
+      <Diagram DiagramId="940da68e11f646489c78203343be2777" Name="Diagram2" >
+        <EntityTypeShape EntityType="DBTezModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,132 @@
+﻿@using OyunArkadasım.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<TBLUYEOYUNBILGI>
+@{
+    ViewBag.Title = "TumOyuncuProfilleri";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<style>
+    h2 {
+        color: #ffb676;
+        text-align: center;
+        text-shadow: 1px 1px 3px rgba(255,193,113,1);
+        margin-bottom: 20px;
+    }
+
+    tr td {
+        font-family: Constantia;
+        font-size: 18px;
+        color: #dbc9b8;
+        text-align: center;
+        border: 2px solid #420000;
+    }
+
+    tr {
+        background: rgba(37, 19, 12, 0.24);
+        font-family: Constantia;
+        font-size: 20px;
+        color: #dbc9b8;
+        text-align: center;
+        border: 2px solid #420000;
+    }
+
+        tr th {
+            border: 2px solid #420000;
+            font-family: Constantia;
+            font-size: 20px;
+            color: #dbc9b8;
+            text-align: center;
+        }
+
+    td a {
+        height: 35px;
+        overflow: hidden;
+        border-radius: 4px;
+        background: url(../../img/button-bg.png) top center;
+        background-size: auto 100%;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+    }
+
+    td span {
+        position: relative;
+        z-index: 2;
+        color: #dbc9b8;
+        font-family: Constantia;
+        font-weight: bolder;
+        text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+    }
+
+    td a:hover {
+        filter: brightness(130%);
+        text-decoration: none;
+    }
+
+    div input {
+        height: 35px;
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #342d29;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 18px;
+        color: #dbc9b8;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    div b {
+        font-family: Constantia;
+        font-size: 18px;
+        color: #dbc9b8;
+    }
+</style>
+<h2>OYUN PROFİLLERİ</h2>
+
+@using (Html.BeginForm("TumOyuncuProfilleri", "OyunProfilleri", FormMethod.Get))
+{
+    <div style="margin-bottom:15px;margin-top:25px;">
+        <b>Aradığınız Oyun Profili Nickname'ni Giriniz :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>@Html.TextBox("p")
+        <input type="submit" value="Ara" />
+    </div>
+}
+
+<table class="table" style="border: 1px solid #ffb676;">
+    <tr>
+        <th>ID</th>
+        <th>Uye ID</th>
+        <th>Nickname</th>
+        <th>Derecesi</th>
+        <th>Main Rol</th>
+        <th>Oyun Adı</th>
+        <th>Profil Puanı</th>
+        <th>Üye Sil</th>
+        <th>Güncelle</th>
+        <th>Mesaj Gönder</th>
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.ID</td>
+            <td>@p.UYEID</td>
+            <td>@p.NICKNAME</td>
+            <td>@p.TBLDERECE.DereceAdı</td>
+            <td>@p.TBLROL.RolAdı</td>
+            <td>@p.TBLOYUN.OYUNADI</td>
+            <td>@p.PUAN</td>
+            <td><a href="/OyunProfilleri/OyunProfiliSil/@p.ID"><span>Sil</span></a></td>
+            <td><a href="/OyunProfilleri/OyunProfiliGetir/@p.ID"><span>Güncelle</span></a></td>
+            <td><a href="/Mesajlar/AdminMesajGonder/@p.UYEID"><span>Mesaj</span></a></td>
+        </tr>
+    }
+</table>
+<a href="/OyunProfilleri/OyunProfiliEkle" class="btn btn-primary">Profili Ekle</a>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("TumOyuncuProfilleri", new { sayfa }))
+

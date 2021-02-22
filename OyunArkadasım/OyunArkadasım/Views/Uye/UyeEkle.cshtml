@@ -1,0 +1,118 @@
+﻿@model OyunArkadasım.Models.Entity.TBLUYE
+@{
+    ViewBag.Title = "UyeEkle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<style>
+    .form {
+        width: 51%;
+        height: auto;
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #ffb676;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        color: #dbc9b8;
+        text-align: left;
+        padding: 100px;
+        padding-top: 20px;
+        margin: 30px;
+        margin-left: 230px;
+    }
+
+        .form h2 {
+            color: #ffb676;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(255,193,113,1);
+        }
+
+        .form button {
+            z-index: 200;
+            width: auto;
+            margin: auto;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 4px;
+            background: url(../../img/button_orange_center.png) top center;
+            background-size: auto 100%;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+        }
+
+            .form button span {
+                position: relative;
+                z-index: 2;
+                color: #250e01;
+                font-family: Constantia;
+                font-size: 18px;
+                font-weight: bolder;
+                text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+            }
+
+            .form button:hover {
+                filter: brightness(130%);
+            }
+
+
+    .text-box {
+        height: 40px;
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #342d29;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        /*color: #dbc9b8;*/
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        color: #f2ceaa;
+    }
+</style>
+
+<div class="form">
+    <form action="#" class="form-group" method="post">
+        <div style="margin-bottom:25px"><h2>ÜYE EKLEME</h2></div>
+        <div style="margin-top:15px">
+            <label>Kullanıcı Adı :&nbsp;&nbsp;</label>
+            @Html.TextBoxFor(x => x.KULLANICIADI, new { @class = "text-box" })
+            @Html.ValidationMessageFor(x => x.KULLANICIADI, "", new { @style = "color:red" })
+        </div>
+        <div style="margin-top:15px;margin-left:55px;">
+            <label>Parola :&nbsp;&nbsp;&nbsp;</label>
+            @Html.TextBoxFor(x => x.PAROLA, new { @class = "text-box" })
+            @Html.ValidationMessageFor(x => x.PAROLA, "", new { @style = "color:red" })
+        </div>
+        <div style="margin-top:15px">
+            <label>&nbsp;&nbsp;Mail Adresi :&nbsp;&nbsp;&nbsp;</label>
+            @Html.TextBoxFor(x => x.EMAIL, new { @class = "text-box" })
+            @Html.ValidationMessageFor(x => x.EMAIL, "", new { @style = "color:red" })
+        </div>
+        <div style="margin-top:15px;margin-left:90px;">
+            <label>Ad :&nbsp;&nbsp;&nbsp;</label>
+            @Html.TextBoxFor(x => x.AD, new { @class = "text-box" })
+            @Html.ValidationMessageFor(x => x.AD, "", new { @style = "color:red" })
+        </div>
+        <div style="margin-top:15px;margin-left:60px;">
+            <label>Soyad :&nbsp;&nbsp;&nbsp;</label>
+            @Html.TextBoxFor(x => x.SOYAD, new { @class = "text-box" })
+            @Html.ValidationMessageFor(x => x.SOYAD, "", new { @style = "color:red" })
+        </div>
+        <div style="margin-top:15px;margin-left:80px;">
+            <label>Yaş :&nbsp;&nbsp;&nbsp;</label>
+            @Html.TextBoxFor(x => x.YAS, new { @class = "text-box" })
+            @Html.ValidationMessageFor(x => x.YAS, "", new { @style = "color:red" })
+        </div>
+        <div style="margin-top:15px">
+            <button class="btn btn-info"><span>Üye Ekle</span></button>
+        </div>
+    </form>
+</div>

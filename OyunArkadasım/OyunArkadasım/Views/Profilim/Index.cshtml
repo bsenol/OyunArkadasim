@@ -1,0 +1,164 @@
+﻿@model OyunArkadasım.Models.Entity.TBLUYE
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutProfilim.cshtml";
+}
+<style>
+    table {
+        border-color: #ffb676;
+    }
+
+    tr {
+        border: hidden;
+    }
+
+        tr td {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #ffb676;
+            border-radius: 4px;
+            font-family: Constantia;
+            font-size: 20px;
+            color: #dbc9b8;
+            text-align: center;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+
+    h2 {
+        font-family: Constantia, sans-serif;
+        font-weight: 600;
+        font-size: 30px;
+        color: #d82727;
+        margin-bottom: 20px;
+        text-shadow: 1px 1px 3px #9a1616;
+    }
+
+    .button {
+        z-index: 200;
+        width: 43%;
+        margin: auto;
+        height: 40px;
+        overflow: hidden;
+        border-radius: 4px;
+        background: url(../../img/button_orange_center.png) top center;
+        background-size: auto 100%;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+        margin-top: 10px;
+    }
+
+    span {
+        position: relative;
+        z-index: 2;
+        color: #250e01;
+        font-family: Constantia;
+        font-size: 18px;
+        font-weight: bolder;
+        text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+    }
+
+    .button:hover {
+        filter: brightness(130%);
+    }
+
+    label {
+        color: #f2ceaa;
+    }
+    .text-box {
+        height: 40px;
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #342d29;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        color: #dbc9b8;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #cerceve {
+        height: auto;
+        width: 656px;
+        border: 1px solid #272523;
+        border-radius: 4px;
+        margin-top: 3px;
+        margin-left: 80px;
+        padding: 20px 0px 20px 0px;
+        background: rgba(37, 19, 12, 0.24);
+        box-shadow: 0px 0px 35px #46000052;
+    }
+</style>
+
+<div id="cerceve">
+    @using (Html.BeginForm("Index2", "Profilim", FormMethod.Post))//Üyelik Bilgileri Güncelleme
+    {
+    <table class="table" style="width:100%;margin:auto;">
+        <tr>
+            <td style="box-shadow:none;">
+                <img src="~/img/logo2.png" alt="Alternate Text" style="width:57%;height:auto;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="box-shadow:none;">
+                <h2>PROFİL DÜZENLEME</h2>
+            </td>
+        </tr>
+        <tr>
+            @*<td style="border-color:#ffb676">
+                <label>KULLLANICI ADI : </label>
+                @Html.DisplayFor(x => x.KULLANICIADI, new { @class = "text-box" })
+            </td>*@
+        </tr>
+        <tr>
+            <td>
+                <label>AD :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                @Html.TextBoxFor(x => x.AD, new { @class = "text-box" })
+                @Html.ValidationMessageFor(x => x.AD, "", new { @style = "color:red" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>SOYAD :&nbsp; </label>
+                @Html.TextBoxFor(x => x.SOYAD, new { @class = "text-box" })
+                @Html.ValidationMessageFor(x => x.SOYAD, "", new { @style = "color:red" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>E-MAİL : </label>
+                @Html.TextBoxFor(x => x.EMAIL, new { @class = "text-box" })
+                @Html.ValidationMessageFor(x => x.EMAIL, "", new { @style = "color:red" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>ŞİFRE :&nbsp;&nbsp;&nbsp;</label>
+                @Html.TextBoxFor(x => x.PAROLA, new { @class = "text-box" })
+                @Html.ValidationMessageFor(x => x.PAROLA, "", new { @style = "color:red" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>YAŞ :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                @Html.TextBoxFor(x => x.YAS, new { @class = "text-box" })
+                @Html.ValidationMessageFor(x => x.YAS, "", new { @style = "color:red" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <button class="btn button" style="background: url(../../img/button_orange_center.png) top center;margin-bottom:30px"><span>Değişiklikleri Onayla</span></button>
+            </td>
+        </tr>
+    </table>
+
+    }
+
+</div>

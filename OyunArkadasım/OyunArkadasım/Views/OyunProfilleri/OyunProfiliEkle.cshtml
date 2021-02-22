@@ -1,0 +1,113 @@
+﻿@model OyunArkadasım.Models.Entity.TBLUYEOYUNBILGI
+@{
+    ViewBag.Title = "OyunProfiliEkle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<style>
+    .form {
+        width: 51%;
+        height: auto;
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #ffb676;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        color: #dbc9b8;
+        text-align: left;
+        padding: 100px;
+        padding-top: 20px;
+        margin: 30px;
+        margin-left: 230px;
+    }
+
+        .form h2 {
+            color: #ffb676;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(255,193,113,1);
+        }
+
+        .form button {
+            z-index: 200;
+            width: auto;
+            margin: auto;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 4px;
+            background: url(../../img/button_orange_center.png) top center;
+            background-size: auto 100%;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+        }
+
+            .form button span {
+                position: relative;
+                z-index: 2;
+                color: #250e01;
+                font-family: Constantia;
+                font-size: 18px;
+                font-weight: bolder;
+                text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+            }
+
+            .form button:hover {
+                filter: brightness(130%);
+            }
+
+
+    .text-box {
+        height: 40px;
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #342d29;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        /*color: #dbc9b8;*/
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        color: #f2ceaa;
+    }
+</style>
+
+<div class="form">
+    <form class="form-group" method="post">
+        <h2 style="margin-bottom:40px;">OYUN PROFİLİ EKLE</h2>
+        <div style="margin-top:15px">
+            <label style="margin-left:50px;">Uye Id :&nbsp;&nbsp;&nbsp;</label>
+            @Html.DropDownListFor(p => p.TBLUYE.Id, (List<SelectListItem>)ViewBag.dgr2, new { @class = "text-box text-warning" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Oyun Seçiniz :</label>
+            @Html.DropDownListFor(p => p.TBLOYUN.ID, (List<SelectListItem>)ViewBag.dgr1, new { @class = "text-box text-warning" })
+        </div>
+        <div style="margin-top:15px">
+            <label style="margin-left:10px;">Nickname :&nbsp;&nbsp;&nbsp;</label>
+            @Html.TextBoxFor(p => p.NICKNAME, new { @class = "text-box" })
+        </div>
+        <div style="margin-top:15px">
+            <label style="margin-left:15px;">Derecesi :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            @Html.DropDownListFor(p => p.TBLDERECE.DereceID, (List<SelectListItem>)ViewBag.dgr3, new { @class = "text-box text-warning" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Ana Özellik :&nbsp;&nbsp;</label>
+            @Html.DropDownListFor(p => p.TBLROL.Id, (List<SelectListItem>)ViewBag.dgr4, new { @class = "text-box text-warning" })
+        </div>
+        <div style="margin-top:15px">
+            <label>Profil Puanı :&nbsp;</label>
+            @Html.TextBoxFor(p => p.PUAN, new { @class = "text-box" })
+        </div>
+
+        <div style="margin-top:15px">
+            <button class="btn btn-info"><span>Oyun Profili Ekle</span></button>
+        </div>
+    </form>
+</div>

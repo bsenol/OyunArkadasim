@@ -1,0 +1,118 @@
+﻿@model OyunArkadasım.Models.Entity.TBLMESAJLAR
+@{
+    ViewBag.Title = "YeniMesaj";
+    Layout = "~/Views/Shared/LayoutProfilim.cshtml";
+}
+<style>
+    .form {
+        height: auto;
+        width: 82%;
+        background: rgba(37, 19, 12, 0.24);
+        box-shadow: 0px 0px 35px #46000052;
+        border: 1px solid #272523;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        color: #dbc9b8;
+        text-align: left;
+        padding: 20px 100px 30px 100px;
+        margin-left: 80px;
+    }
+
+        .form h2 {
+            color: #ffb676;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(255,193,113,1);
+        }
+
+        .form button {
+            z-index: 200;
+            width: auto;
+            margin: auto;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 4px;
+            background: url(../../img/button_orange_center.png) top center;
+            background-size: auto 100%;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+        }
+
+            .form button span {
+                position: relative;
+                z-index: 2;
+                color: #250e01;
+                font-family: Constantia;
+                font-size: 18px;
+                font-weight: bolder;
+                text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+            }
+
+            .form button:hover {
+                filter: brightness(130%);
+            }
+
+
+    .text-box {
+        height: 40px;
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #342d29;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        /*color: #dbc9b8;*/
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .mesaj {
+        background: rgba(37, 19, 12, 0.24);
+        border: 1px solid #342d29;
+        border-radius: 4px;
+        font-family: Constantia;
+        font-size: 20px;
+        /*color: #dbc9b8;*/
+        text-align: center;
+        margin-bottom: 20px;
+        height:100px;
+        width:350px;
+    }
+
+    label {
+        color: #f2ceaa;
+    }
+
+
+
+</style>
+
+<div class="form">
+    <form action="#" class="form-group" method="post">
+        <div style="margin-bottom:45px"><h2>MESAJ GÖNDER</h2></div>
+        <div style="margin-top:15px;margin-left:70px;">
+            <label>Alıcı :&nbsp;&nbsp;</label>
+            @Html.TextBoxFor(x => x.alici, new { @class = "text-box" })
+
+        </div>
+        <div style="margin-top:15px;margin-left:55px;">
+            <label>Konu :&nbsp;&nbsp;&nbsp;</label>
+            @Html.TextBoxFor(x => x.konu, new { @class = "text-box" })
+
+        </div>
+        <div style="margin-top:15px;margin-left:50px;">
+            <label style="margin:10px 0px 20px 110px;">Mesaj İçeriği :</label>
+            @Html.TextAreaFor(x => x.icerik, new { @class = "mesaj" })
+
+        </div>
+        <div style="margin-top:15px">
+            <button class="btn btn-info"><span>Mesaj Gönder</span></button>
+        </div>
+    </form>
+</div>
+

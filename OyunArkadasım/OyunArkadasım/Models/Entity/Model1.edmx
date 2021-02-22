@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBTezModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TBLADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KullaniciAdi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sifre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Yetki" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBLDERECE">
+          <Key>
+            <PropertyRef Name="DereceID" />
+          </Key>
+          <Property Name="DereceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DereceAdı" Type="varchar" MaxLength="20" />
+          <Property Name="OyunID" Type="int" />
+        </EntityType>
+        <EntityType Name="TBLMESAJLAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gonderen" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="alici" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="konu" Type="varchar" MaxLength="50" />
+          <Property Name="icerik" Type="varchar" MaxLength="500" />
+          <Property Name="tarih" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="TBLOYUN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="OYUNADI" Type="varchar" MaxLength="20" />
+          <Property Name="FOTOGRAF" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TBLROL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RolAdı" Type="varchar" MaxLength="20" />
+          <Property Name="OyunID" Type="int" />
+        </EntityType>
+        <EntityType Name="TBLUYE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KULLANICIADI" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PAROLA" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="YAS" Type="int" Nullable="false" />
+          <Property Name="AD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SOYAD" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="UYEPUAN" Type="int" />
+        </EntityType>
+        <EntityType Name="TBLUYEOYUNBILGI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UYEID" Type="int" Nullable="false" />
+          <Property Name="NICKNAME" Type="varchar" MaxLength="50" />
+          <Property Name="DERECESİ" Type="int" />
+          <Property Name="OYUNID" Type="int" Nullable="false" />
+          <Property Name="ROL1" Type="int" Nullable="false" />
+          <Property Name="KARAKTERLER" Type="varchar" MaxLength="50" />
+          <Property Name="PUAN" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_TBLDERECE_TBLOYUN">
+          <End Role="TBLOYUN" Type="Self.TBLOYUN" Multiplicity="0..1" />
+          <End Role="TBLDERECE" Type="Self.TBLDERECE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLOYUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLDERECE">
+              <PropertyRef Name="OyunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLROL_TBLOYUN">
+          <End Role="TBLOYUN" Type="Self.TBLOYUN" Multiplicity="0..1" />
+          <End Role="TBLROL" Type="Self.TBLROL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLOYUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLROL">
+              <PropertyRef Name="OyunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLUYEOYUNBILGI_TBLDERECE">
+          <End Role="TBLDERECE" Type="Self.TBLDERECE" Multiplicity="0..1" />
+          <End Role="TBLUYEOYUNBILGI" Type="Self.TBLUYEOYUNBILGI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLDERECE">
+              <PropertyRef Name="DereceID" />
+            </Principal>
+            <Dependent Role="TBLUYEOYUNBILGI">
+              <PropertyRef Name="DERECESİ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLUYEOYUNBILGI_TBLOYUN1">
+          <End Role="TBLOYUN" Type="Self.TBLOYUN" Multiplicity="1" />
+          <End Role="TBLUYEOYUNBILGI" Type="Self.TBLUYEOYUNBILGI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLOYUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLUYEOYUNBILGI">
+              <PropertyRef Name="OYUNID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLUYEOYUNBILGI_TBLROL">
+          <End Role="TBLROL" Type="Self.TBLROL" Multiplicity="1" />
+          <End Role="TBLUYEOYUNBILGI" Type="Self.TBLUYEOYUNBILGI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLROL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TBLUYEOYUNBILGI">
+              <PropertyRef Name="ROL1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLUYEOYUNBILGI_TBLUYE1">
+          <End Role="TBLUYE" Type="Self.TBLUYE" Multiplicity="1" />
+          <End Role="TBLUYEOYUNBILGI" Type="Self.TBLUYEOYUNBILGI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLUYE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TBLUYEOYUNBILGI">
+              <PropertyRef Name="UYEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Top5cs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Top5lol" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Top5valo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DBTezModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLADMIN" EntityType="Self.TBLADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLDERECE" EntityType="Self.TBLDERECE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLMESAJLAR" EntityType="Self.TBLMESAJLAR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLOYUN" EntityType="Self.TBLOYUN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLROL" EntityType="Self.TBLROL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLUYE" EntityType="Self.TBLUYE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBLUYEOYUNBILGI" EntityType="Self.TBLUYEOYUNBILGI" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_TBLDERECE_TBLOYUN" Association="Self.FK_TBLDERECE_TBLOYUN">
+            <End Role="TBLOYUN" EntitySet="TBLOYUN" />
+            <End Role="TBLDERECE" EntitySet="TBLDERECE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLROL_TBLOYUN" Association="Self.FK_TBLROL_TBLOYUN">
+            <End Role="TBLOYUN" EntitySet="TBLOYUN" />
+            <End Role="TBLROL" EntitySet="TBLROL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLUYEOYUNBILGI_TBLDERECE" Association="Self.FK_TBLUYEOYUNBILGI_TBLDERECE">
+            <End Role="TBLDERECE" EntitySet="TBLDERECE" />
+            <End Role="TBLUYEOYUNBILGI" EntitySet="TBLUYEOYUNBILGI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLUYEOYUNBILGI_TBLOYUN1" Association="Self.FK_TBLUYEOYUNBILGI_TBLOYUN1">
+            <End Role="TBLOYUN" EntitySet="TBLOYUN" />
+            <End Role="TBLUYEOYUNBILGI" EntitySet="TBLUYEOYUNBILGI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLUYEOYUNBILGI_TBLROL" Association="Self.FK_TBLUYEOYUNBILGI_TBLROL">
+            <End Role="TBLROL" EntitySet="TBLROL" />
+            <End Role="TBLUYEOYUNBILGI" EntitySet="TBLUYEOYUNBILGI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLUYEOYUNBILGI_TBLUYE1" Association="Self.FK_TBLUYEOYUNBILGI_TBLUYE1">
+            <End Role="TBLUYE" EntitySet="TBLUYE" />
+            <End Role="TBLUYEOYUNBILGI" EntitySet="TBLUYEOYUNBILGI" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBTezModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TBLOYUN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="OYUNADI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLUYEOYUNBILGI" Relationship="Self.FK_TBLUYEOYUNBILGI_TBLOYUN" FromRole="TBLOYUN" ToRole="TBLUYEOYUNBILGI" />
+          <Property Name="FOTOGRAF" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TBLDERECE" Relationship="DBTezModel.FK_TBLDERECE_TBLOYUN" FromRole="TBLOYUN" ToRole="TBLDERECE" />
+          <NavigationProperty Name="TBLROL" Relationship="DBTezModel.FK_TBLROL_TBLOYUN" FromRole="TBLOYUN" ToRole="TBLROL" />
+        </EntityType>
+        <EntityType Name="TBLUYE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KULLANICIADI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PAROLA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="YAS" Nullable="false" Type="Int32" />
+          <Property Name="AD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SOYAD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UYEPUAN" Type="Int32" />
+          <NavigationProperty Name="TBLUYEOYUNBILGI" Relationship="Self.FK_TBLUYEOYUNBILGI_TBLUYE1" FromRole="TBLUYE" ToRole="TBLUYEOYUNBILGI" />
+        </EntityType>
+        <EntityType Name="TBLUYEOYUNBILGI">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NICKNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DERECESİ" Type="Int32" />
+          <Property Name="ROL1" Type="Int32" Nullable="false" DefaultValue="10" />
+          <Property Name="OYUNID" Type="Int32" Nullable="false" />
+          <Property Name="KARAKTERLER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UYEID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBLOYUN" Relationship="Self.FK_TBLUYEOYUNBILGI_TBLOYUN" FromRole="TBLUYEOYUNBILGI" ToRole="TBLOYUN" />
+          <NavigationProperty Name="TBLUYE" Relationship="Self.FK_TBLUYEOYUNBILGI_TBLUYE1" FromRole="TBLUYEOYUNBILGI" ToRole="TBLUYE" />
+          <Property Name="PUAN" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TBLDERECE" Relationship="DBTezModel.FK_TBLUYEOYUNBILGI_TBLDERECE" FromRole="TBLUYEOYUNBILGI" ToRole="TBLDERECE" />
+          <NavigationProperty Name="TBLROL" Relationship="DBTezModel.FK_TBLUYEOYUNBILGI_TBLROL" FromRole="TBLUYEOYUNBILGI" ToRole="TBLROL" />
+        </EntityType>
+        <Association Name="FK_TBLUYEOYUNBILGI_TBLOYUN">
+          <End Role="TBLOYUN" Type="Self.TBLOYUN" Multiplicity="1" />
+          <End Role="TBLUYEOYUNBILGI" Type="Self.TBLUYEOYUNBILGI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLOYUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLUYEOYUNBILGI">
+              <PropertyRef Name="OYUNID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLUYEOYUNBILGI_TBLUYE1">
+          <End Role="TBLUYE" Type="Self.TBLUYE" Multiplicity="1" />
+          <End Role="TBLUYEOYUNBILGI" Type="Self.TBLUYEOYUNBILGI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLUYE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TBLUYEOYUNBILGI">
+              <PropertyRef Name="UYEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBTezEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TBLOYUN" EntityType="Self.TBLOYUN" />
+          <EntitySet Name="TBLUYE" EntityType="Self.TBLUYE" />
+          <EntitySet Name="TBLUYEOYUNBILGI" EntityType="Self.TBLUYEOYUNBILGI" />
+          <AssociationSet Name="FK_TBLUYEOYUNBILGI_TBLOYUN" Association="Self.FK_TBLUYEOYUNBILGI_TBLOYUN">
+            <End Role="TBLOYUN" EntitySet="TBLOYUN" />
+            <End Role="TBLUYEOYUNBILGI" EntitySet="TBLUYEOYUNBILGI" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLUYEOYUNBILGI_TBLUYE1" Association="Self.FK_TBLUYEOYUNBILGI_TBLUYE1">
+            <End Role="TBLUYE" EntitySet="TBLUYE" />
+            <End Role="TBLUYEOYUNBILGI" EntitySet="TBLUYEOYUNBILGI" />
+          </AssociationSet>
+          <EntitySet Name="TBLDERECE" EntityType="DBTezModel.TBLDERECE" />
+          <AssociationSet Name="FK_TBLDERECE_TBLOYUN" Association="DBTezModel.FK_TBLDERECE_TBLOYUN">
+            <End Role="TBLOYUN" EntitySet="TBLOYUN" />
+            <End Role="TBLDERECE" EntitySet="TBLDERECE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLUYEOYUNBILGI_TBLDERECE" Association="DBTezModel.FK_TBLUYEOYUNBILGI_TBLDERECE">
+            <End Role="TBLDERECE" EntitySet="TBLDERECE" />
+            <End Role="TBLUYEOYUNBILGI" EntitySet="TBLUYEOYUNBILGI" />
+          </AssociationSet>
+          <EntitySet Name="TBLROL" EntityType="DBTezModel.TBLROL" />
+          <AssociationSet Name="FK_TBLROL_TBLOYUN" Association="DBTezModel.FK_TBLROL_TBLOYUN">
+            <End Role="TBLOYUN" EntitySet="TBLOYUN" />
+            <End Role="TBLROL" EntitySet="TBLROL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBLUYEOYUNBILGI_TBLROL" Association="DBTezModel.FK_TBLUYEOYUNBILGI_TBLROL">
+            <End Role="TBLROL" EntitySet="TBLROL" />
+            <End Role="TBLUYEOYUNBILGI" EntitySet="TBLUYEOYUNBILGI" />
+          </AssociationSet>
+          <EntitySet Name="TBLMESAJLAR" EntityType="DBTezModel.TBLMESAJLAR" />
+          <FunctionImport Name="LolTop5" ReturnType="Collection(DBTezModel.LolTop5_Result)" />
+          <FunctionImport Name="CsTop5" ReturnType="Collection(DBTezModel.CsTop5_Result)" />
+          <FunctionImport Name="ValorantTop5" ReturnType="Collection(DBTezModel.ValorantTop5_Result)" />
+          <FunctionImport Name="Top5cs" ReturnType="Collection(DBTezModel.Top5cs_Result)" />
+          <FunctionImport Name="Top5lol" ReturnType="Collection(DBTezModel.Top5lol_Result)" />
+          <FunctionImport Name="Top5valo" ReturnType="Collection(DBTezModel.Top5valo_Result)" />
+          <EntitySet Name="TBLADMIN" EntityType="DBTezModel.TBLADMIN" />
+        </EntityContainer>
+        <EntityType Name="TBLDERECE">
+          <Key>
+            <PropertyRef Name="DereceID" />
+          </Key>
+          <Property Name="DereceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DereceAdı" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OyunID" Type="Int32" />
+          <NavigationProperty Name="TBLOYUN" Relationship="DBTezModel.FK_TBLDERECE_TBLOYUN" FromRole="TBLDERECE" ToRole="TBLOYUN" />
+          <NavigationProperty Name="TBLUYEOYUNBILGI" Relationship="DBTezModel.FK_TBLUYEOYUNBILGI_TBLDERECE" FromRole="TBLDERECE" ToRole="TBLUYEOYUNBILGI" />
+        </EntityType>
+        <Association Name="FK_TBLDERECE_TBLOYUN">
+          <End Type="DBTezModel.TBLOYUN" Role="TBLOYUN" Multiplicity="0..1" />
+          <End Type="DBTezModel.TBLDERECE" Role="TBLDERECE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLOYUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLDERECE">
+              <PropertyRef Name="OyunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLUYEOYUNBILGI_TBLDERECE">
+          <End Type="DBTezModel.TBLDERECE" Role="TBLDERECE" Multiplicity="0..1" />
+          <End Type="DBTezModel.TBLUYEOYUNBILGI" Role="TBLUYEOYUNBILGI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLDERECE">
+              <PropertyRef Name="DereceID" />
+            </Principal>
+            <Dependent Role="TBLUYEOYUNBILGI">
+              <PropertyRef Name="DERECESİ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBLROL">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RolAdı" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OyunID" Type="Int32" />
+          <NavigationProperty Name="TBLOYUN" Relationship="DBTezModel.FK_TBLROL_TBLOYUN" FromRole="TBLROL" ToRole="TBLOYUN" />
+          <NavigationProperty Name="TBLUYEOYUNBILGI" Relationship="DBTezModel.FK_TBLUYEOYUNBILGI_TBLROL" FromRole="TBLROL" ToRole="TBLUYEOYUNBILGI" />
+        </EntityType>
+        <Association Name="FK_TBLROL_TBLOYUN">
+          <End Type="DBTezModel.TBLOYUN" Role="TBLOYUN" Multiplicity="0..1" />
+          <End Type="DBTezModel.TBLROL" Role="TBLROL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLOYUN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TBLROL">
+              <PropertyRef Name="OyunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBLUYEOYUNBILGI_TBLROL">
+          <End Type="DBTezModel.TBLROL" Role="TBLROL" Multiplicity="1" />
+          <End Type="DBTezModel.TBLUYEOYUNBILGI" Role="TBLUYEOYUNBILGI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBLROL">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TBLUYEOYUNBILGI">
+              <PropertyRef Name="ROL1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBLMESAJLAR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gonderen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="alici" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="konu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="icerik" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="tarih" Type="DateTime" Precision="0" />
+        </EntityType>
+        <ComplexType Name="LolTop5_Result">
+          <Property Type="String" Name="NICKNAME" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PUAN" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="CsTop5_Result">
+          <Property Type="String" Name="NICKNAME" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PUAN" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ValorantTop5_Result">
+          <Property Type="String" Name="NICKNAME" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PUAN" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Top5cs_Result">
+          <Property Type="String" Name="NICKNAME" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PUAN" Nullable="false" />
+          <Property Type="Int32" Name="UYEID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Top5lol_Result">
+          <Property Type="String" Name="NICKNAME" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PUAN" Nullable="false" />
+          <Property Type="Int32" Name="UYEID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Top5valo_Result">
+          <Property Type="String" Name="NICKNAME" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="PUAN" Nullable="false" />
+          <Property Type="Int32" Name="UYEID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="TBLADMIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KullaniciAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Yetki" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBTezModelStoreContainer" CdmEntityContainer="DBTezEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBTezModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLOYUN">
+            <EntityTypeMapping TypeName="DBTezModel.TBLOYUN">
+              <MappingFragment StoreEntitySet="TBLOYUN">
+                <ScalarProperty Name="FOTOGRAF" ColumnName="FOTOGRAF" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OYUNADI" ColumnName="OYUNADI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLUYE">
+            <EntityTypeMapping TypeName="DBTezModel.TBLUYE">
+              <MappingFragment StoreEntitySet="TBLUYE">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="KULLANICIADI" ColumnName="KULLANICIADI" />
+                <ScalarProperty Name="PAROLA" ColumnName="PAROLA" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="YAS" ColumnName="YAS" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="SOYAD" ColumnName="SOYAD" />
+                <ScalarProperty Name="UYEPUAN" ColumnName="UYEPUAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLUYEOYUNBILGI">
+            <EntityTypeMapping TypeName="DBTezModel.TBLUYEOYUNBILGI">
+              <MappingFragment StoreEntitySet="TBLUYEOYUNBILGI">
+                <ScalarProperty Name="PUAN" ColumnName="PUAN" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+                <ScalarProperty Name="DERECESİ" ColumnName="DERECESİ" />
+                <ScalarProperty Name="ROL1" ColumnName="ROL1" />
+                <ScalarProperty Name="OYUNID" ColumnName="OYUNID" />
+                <ScalarProperty Name="KARAKTERLER" ColumnName="KARAKTERLER" />
+                <ScalarProperty Name="UYEID" ColumnName="UYEID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLDERECE">
+            <EntityTypeMapping TypeName="DBTezModel.TBLDERECE">
+              <MappingFragment StoreEntitySet="TBLDERECE">
+                <ScalarProperty Name="OyunID" ColumnName="OyunID" />
+                <ScalarProperty Name="DereceAdı" ColumnName="DereceAdı" />
+                <ScalarProperty Name="DereceID" ColumnName="DereceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLROL">
+            <EntityTypeMapping TypeName="DBTezModel.TBLROL">
+              <MappingFragment StoreEntitySet="TBLROL">
+                <ScalarProperty Name="OyunID" ColumnName="OyunID" />
+                <ScalarProperty Name="RolAdı" ColumnName="RolAdı" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBLMESAJLAR">
+            <EntityTypeMapping TypeName="DBTezModel.TBLMESAJLAR">
+              <MappingFragment StoreEntitySet="TBLMESAJLAR">
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="icerik" ColumnName="icerik" />
+                <ScalarProperty Name="konu" ColumnName="konu" />
+                <ScalarProperty Name="alici" ColumnName="alici" />
+                <ScalarProperty Name="gonderen" ColumnName="gonderen" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Top5cs" FunctionName="DBTezModel.Store.Top5cs">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBTezModel.Top5cs_Result">
+                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+                <ScalarProperty Name="PUAN" ColumnName="PUAN" />
+                <ScalarProperty Name="UYEID" ColumnName="UYEID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Top5lol" FunctionName="DBTezModel.Store.Top5lol">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBTezModel.Top5lol_Result">
+                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+                <ScalarProperty Name="PUAN" ColumnName="PUAN" />
+                <ScalarProperty Name="UYEID" ColumnName="UYEID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Top5valo" FunctionName="DBTezModel.Store.Top5valo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DBTezModel.Top5valo_Result">
+                <ScalarProperty Name="NICKNAME" ColumnName="NICKNAME" />
+                <ScalarProperty Name="PUAN" ColumnName="PUAN" />
+                <ScalarProperty Name="UYEID" ColumnName="UYEID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="TBLADMIN">
+            <EntityTypeMapping TypeName="DBTezModel.TBLADMIN">
+              <MappingFragment StoreEntitySet="TBLADMIN">
+                <ScalarProperty Name="Yetki" ColumnName="Yetki" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

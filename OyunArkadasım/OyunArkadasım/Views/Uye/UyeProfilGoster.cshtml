@@ -1,0 +1,212 @@
+﻿@model OyunArkadasım.Models.Entity.TBLUYE
+@{
+    ViewBag.Title = "UyeProfilGoster";
+    Layout = "~/Views/Shared/LayoutUye.cshtml";
+}
+
+<style>
+    table {
+        border-color: #ffb676;
+    }
+
+    tr {
+        border: hidden;
+    }
+
+        tr td {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #ffb676;
+            border-radius: 4px;
+            font-family: Constantia;
+            font-size: 20px;
+            color: #dbc9b8;
+            text-align: center;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+
+    h2 {
+        font-family: Constantia, sans-serif;
+        font-weight: 600;
+        font-size: 34px;
+        color: #ffb676;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 3px rgba(255,193,113,1);
+    }
+
+    .button {
+        z-index: 200;
+        width: 40%;
+        margin: auto;
+        height: 40px;
+        overflow: hidden;
+        border-radius: 4px;
+        background: url(../../img/button_orange_center.png) top center;
+        background-size: auto 100%;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+        margin-top: 10px;
+    }
+
+    span {
+        position: relative;
+        z-index: 2;
+        color: #250e01;
+        font-family: Constantia;
+        font-size: 18px;
+        font-weight: bolder;
+        text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+    }
+
+    .button:hover {
+        filter: brightness(130%);
+    }
+
+    label {
+        color: #f2ceaa;
+    }
+    .solmenu {
+        z-index: 1;
+        width: 95%;
+        box-shadow: 0px 0px 35px #46000052;
+        background: url(../images/mini_nav_bg.jpg) #160a0b bottom center;
+        border: 1px solid #261c1a;
+        overflow: hidden;
+        position: absolute;
+        top: 58px;
+        left: calc( ( 100% - 185px + 20px ) / 2 );
+        overflow: hidden;
+        margin-top: -55px;
+        border-radius: 4px;
+    }
+
+        .solmenu > a {
+            width: 100%;
+            padding: 18px 8px;
+            color: #ffb676;
+            text-decoration: none;
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 16px;
+            text-transform: uppercase;
+            text-shadow: 0px 2px 2px #000000;
+            transition: all .2s ease-in-out;
+            border-bottom: 1px solid #1e1310;
+            text-align: center;
+        }
+
+    #uyeadi {
+        width: 100%;
+        color: #d83e3e;
+        text-decoration: none;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 24px;
+        padding: 18px 8px;
+        text-transform: uppercase;
+        text-shadow: 0px 0px 1px #d83e3e;
+        border-bottom: 1px solid #1e1310;
+        text-align: center;
+        margin: 0px;
+    }
+
+            .solmenu > a:hover {
+                filter: brightness(150%);
+            }
+
+            .solmenu > a:focus {
+                filter: brightness(150%);
+            }
+
+            .solmenu > a:active {
+                filter: brightness(150%);
+            }
+
+    #cerceve {
+        height: auto;
+        width: 656px;
+        border: 1px solid #272523;
+        border-radius: 4px;
+        margin-top: 3px;
+        margin-left: 80px;
+        padding: 20px 0px 20px 0px;
+        background: rgba(37, 19, 12, 0.24);
+        box-shadow: 0px 0px 35px #46000052;
+    }
+</style>
+<div class="container-fluid" style="margin-top:30px">
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3">
+            <div class="solmenu">
+                <p id="uyeadi">@ViewData["kullaniciadi"]</p>
+                <a href="/Uye/UyeProfilGoster/@ViewData["uyeid"]">ÜYE PROFİLİ</a>
+                <a href="/Uye/UyeLolProfiliGoster/@ViewData["uyeid"]">LOL PROFİLİ</a>
+                <a href="/Uye/UyeCsProfiliGoster/@ViewData["uyeid"]">CS:GO PROFİLİ</a>
+                <a href="/Uye/UyeValorantProfiliGoster/@ViewData["uyeid"]">VALORANT PROFİLİ</a>
+                <a href="/Uye/MesajGonder/@ViewData["uyeid"]">MESAJ GÖNDER</a>
+
+            </div>
+        </div>
+        <div class="col-sm-9 col-md-9 col-lg-9" style="padding-left:20px">
+            <div id="cerceve">
+                <table class="table" style="width:100%;margin:auto;">
+                    <tr>
+                        <td style="box-shadow:none;">
+                            <img src="~/img/logo2.png" alt="Alternate Text" style="width:57%;height:auto;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="box-shadow:none;">
+                            <h2>PROFİLİ</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ffb676;padding-top:20px">
+                            <label>Kullanıcı Adı :&nbsp;&nbsp;&nbsp; </label>
+                            @Html.DisplayFor(x => x.KULLANICIADI)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Ad :&nbsp;&nbsp;&nbsp; </label>
+                            @Html.DisplayFor(x => x.AD)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Soyad :&nbsp;&nbsp;&nbsp; </label>
+                            @Html.DisplayFor(x => x.SOYAD)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>E-Mail :&nbsp;&nbsp;&nbsp; </label>
+                            @Html.DisplayFor(x => x.EMAIL)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Yaş :&nbsp;&nbsp;&nbsp; </label>
+                            @Html.DisplayFor(x => x.YAS)
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,131 @@
+﻿@model OyunArkadasım.Models.Entity.TBLUYEOYUNBILGI
+@{
+    ViewBag.Title = "ValorantProfilimiGoster";
+    Layout = "~/Views/Shared/LayoutProfilim.cshtml";
+}
+
+<style>
+    table {
+        border-color: #ffb676;
+    }
+
+    tr {
+        border: hidden;
+    }
+
+        tr td {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #ffb676;
+            border-radius: 4px;
+            font-family: Constantia;
+            font-size: 20px;
+            color: #dbc9b8;
+            text-align: center;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+
+    h2 {
+        font-family: Constantia, sans-serif;
+        font-weight: 600;
+        font-size: 30px;
+        color: #d82727;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 3px #9a1616;
+    }
+
+    .button {
+        z-index: 200;
+        width: 40%;
+        margin: auto;
+        height: 40px;
+        overflow: hidden;
+        border-radius: 4px;
+        background: url(../../img/button_orange_center.png) top center;
+        background-size: auto 100%;
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+        margin-top: 10px;
+    }
+
+    span {
+        position: relative;
+        z-index: 2;
+        color: #250e01;
+        font-family: Constantia;
+        font-size: 18px;
+        font-weight: bolder;
+        text-shadow: 0px 1px 1px rgba(255,193,113,0.5);
+    }
+
+    .button:hover {
+        filter: brightness(130%);
+    }
+
+    label {
+        color: #f2ceaa;
+    }
+
+    #cerceve {
+        height: auto;
+        width: 656px;
+        border: 1px solid #272523;
+        border-radius: 4px;
+        margin-top: 3px;
+        margin-left: 80px;
+        padding: 20px 0px 20px 0px;
+        background: rgba(37, 19, 12, 0.24);
+        box-shadow: 0px 0px 35px #46000052;
+    }
+</style>
+
+<div id="cerceve">
+    <table class="table" style="width:100%;margin:auto;">
+        <tr>
+            <td style="box-shadow:none;">
+                <img src="~/img/valo-logo.png" alt="Alternate Text" class="logo" style="width:47%;height:auto;margin-top:15px;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="box-shadow:none;">
+                <h2>PROFİLİM</h2>
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #ffb676;padding-top:20px">
+                <label>Nickname :&nbsp;&nbsp;&nbsp; </label>
+                @Html.DisplayFor(x => x.NICKNAME)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Derece :&nbsp;&nbsp;&nbsp; </label>
+                @Html.DisplayFor(x => x.TBLDERECE.DereceAdı)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Oyun Rolü :&nbsp;&nbsp;&nbsp; </label>
+                @Html.DisplayFor(x => x.TBLROL.RolAdı)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Valorant Profili Puanı :&nbsp;&nbsp;&nbsp; </label>
+                @Html.DisplayFor(x => x.PUAN)
+            </td>
+        </tr>
+        <tr>
+            <td style="padding-bottom:25px;">
+                <a href="/Profilim/ValorantProfilimiDuzenle" class="btn button" style="background: url(../../img/button_orange_center.png) top center;"><span>Bilgilerimi Düzenle</span></a>
+            </td>
+        </tr>
+    </table>
+</div>
